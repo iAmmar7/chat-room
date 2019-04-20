@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="scss/room/default.css">
+</head>
+<body>
+  <!-- <h1>This is <span class="username"></span> room</h1>
+  <button class="sign-out">Sign Out</button> -->
+
+  <div class="container">
+    <div class="left-container">
+      <div class="header-left">
+  
+      </div>
+      <div class="users">
+  
+      </div>
+      <div class="bottom-left">
+  
+      </div>
+    </div>
+    <div class="right-container">
+      <div class="header-right">
+  
+      </div>
+      <div class="messages">
+  
+      </div>
+      <div class="bottom-right">
+        <input type="text" placeholder="Type a message" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase -->
+  <script defer src="https://www.gstatic.com/firebasejs/5.10.0/firebase-app.js"></script>
+
+  <script defer src="https://www.gstatic.com/firebasejs/5.10.0/firebase-auth.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/5.10.0/firebase-database.js"></script>
+
+  <script defer src="./js/init-firebase.js"></script>
+  <script src="./js/element.js"></script>
+  <script src="./js/auth/sign-out.js"></script>
+  <script src="./js/room.js"></script>
+</body>
+</html>
