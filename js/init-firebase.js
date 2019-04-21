@@ -9,5 +9,6 @@
   };
   firebase.initializeApp(config);
 
+  console.log("Firebase Connected!!")
   const auth = firebase.auth();
   const db = firebase.database();

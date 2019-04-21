@@ -29,7 +29,8 @@ function writeUserData(userId, name, email) {
     .ref('Users/' + userId)
     .set({
     username: name,
-    email: email
+    email: email,
+    online: false
   });
 }
 

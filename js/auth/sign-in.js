@@ -9,7 +9,10 @@ sigin__form.addEventListener("submit", (e) => {
   .signInWithEmailAndPassword(email, pass)
   .then(res => {
     alert(res, "Succesfull");
+
     window.location.href = "../../room.html";
+
+    userOnline(res.user.uid);
   })
   .catch(function(error) {
     var errorCode = error.code;
@@ -18,3 +21,12 @@ sigin__form.addEventListener("submit", (e) => {
     alert(errorMessage)
   });
 });
+
+function userOnline(userId) {
+  firebase
+    .database()
+    .ref('Users/' + userId)
+    .update({
+      online: true
+    });
+}
