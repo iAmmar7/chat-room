@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link href="https://fonts.googleapis.com/css?family=Overlock:400,700,900" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="scss/room/default.css">
 </head>
@@ -13,27 +14,103 @@
   <button class="sign-out">Sign Out</button> -->
 
   <div class="container">
+
     <div class="left-container">
       <div class="header-left">
-  
+        <button class="sign-out">Sign Out</button> 
       </div>
-      <div class="users">
-  
+
+      <div class="users-container">
+        <div class="each-user">
+          <div class="avatar" style="background: black">
+            <i class="fas fa-user-alt"></i>
+          </div>
+          <div class="name">
+            <p class="username">Jon Snow</p>
+            <i class="fas fa-circle"></i>
+          </div>
+        </div>
+        <div class="each-user">
+          <div class="avatar" style="background: yellow">
+            <i class="fas fa-user-alt"></i>
+          </div>
+          <div class="name">
+            <p class="username">Daenerys Targaryen</p>
+            <i class="fas fa-circle"></i>
+          </div>
+        </div>
+        <div class="each-user">
+          <div class="avatar" style="background: blue">
+            <i class="fas fa-user-alt"></i>
+          </div>
+          <div class="name">
+            <p class="username">Arya Stark</p>
+            <i class="fas fa-circle"></i>
+          </div>
+        </div>
       </div>
+
       <div class="bottom-left">
-  
+        <div class="create-room">
+          <i class="fas fa-plus"></i>
+        </div>
       </div>
+
     </div>
+
     <div class="right-container">
       <div class="header-right">
-  
+        <h2>Default Room</h2>
+        <i class="fas fa-bell-slash"></i>
+        <i class="far fa-clock"></i>
+        <i class="fas fa-trash"></i>
       </div>
-      <div class="messages">
-  
+
+      <div class="messages-container">
+        <div class="each-message">
+          <div class="avatar" style="background: black">
+            <i class="fas fa-user-alt"></i>
+          </div>
+          <div class="message">
+            <p class="username">Jon Snow</p>
+            <p class="text">The White Walkers don't care if a man's free folk or crow. We're all the same to them, meat for their army.</p>
+          </div>
+        </div>
+        <div class="each-message">
+          <div class="avatar" style="background: yellow">
+            <i class="fas fa-user-alt"></i>
+          </div>
+          <div class="message">
+            <p class="username">Daenerys Targaryen</p>
+            <p class="text">When my dragons are grown, we will take back what was stolen from me and destroy those who wronged me! We will lay waste to armies and burn cities to the ground!</p>
+          </div> 
+        </div>
+        <div class="each-message">
+          <div class="avatar" style="background: blue">
+            <i class="fas fa-user-alt"></i>
+          </div>
+          <div class="message">
+            <p class="username">Arya Stark</p>
+            <p class="text">Leave one wolf alive and the sheep are never safe. When people ask you what happened here, tell them the North remembers. Tell them winter came for House Frey.</p>
+          </div> 
+        </div>
+        <div class="each-message">
+          <div class="avatar" style="background: black">
+            <i class="fas fa-user-alt"></i>
+          </div>
+          <div class="message">
+            <p class="username">Jon Snow</p>
+            <p class="text">The more you give a king, the more he wants. We are walking on a bridge of ice with an abyss on either side. Pleasing one king is difficult enough, pleasing two is hardly possible.</p>
+          </div> 
+        </div>
       </div>
+
       <div class="bottom-right">
+        <button><i class="fas fa-paperclip"></i></button>
         <input type="text" placeholder="Type a message" />
+        <button><i class="fas fa-paper-plane"></i></button>
       </div>
+
     </div>
   </div>
 

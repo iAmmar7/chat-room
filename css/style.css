@@ -185,21 +185,28 @@ h2 {
   font-family: Poppins;
   font-size: 36px; }
 
-.main {
-  background: #f8f8f8;
-  padding: 150px 0; }
-
 .clear {
   clear: both; }
+
+html {
+  height: 100%;
+}
 
 body {
   font-size: 13px;
   line-height: 1.8;
+  height: 100%;
   color: #222;
-  background: #f8f8f8;
+  background: #303030;
   font-weight: 400;
   font-family: Poppins; }
 
+section {
+  /* position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+}
 .container {
   width: 900px;
   background: #fff;
@@ -250,7 +257,7 @@ body {
   -ms-transform: translate(-50%, -50%); }
 
 .signup {
-  margin-bottom: 150px; }
+   }
 
 .signup-content {
   padding: 75px 0; }

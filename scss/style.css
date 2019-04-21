@@ -145,6 +145,21 @@ list-type-ulli, .socials {
   /* Legacy iOS */
 }
 
+/* @extend display-flex; */
+display-flex, .display-flex, .display-flex-center, .signup-content, .signin-content, .social-login, .socials {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  display: -webkit-flex;
+}
+
+/* @extend list-type-ulli; */
+list-type-ulli, .socials {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 a:focus, a:active {
   text-decoration: none;
   outline: none;
@@ -224,7 +239,7 @@ h2 {
 }
 
 .main {
-  background: #f8f8f8;
+  background: black;
   padding: 150px 0;
 }
 
@@ -243,7 +258,7 @@ body {
 
 .container {
   width: 900px;
-  background: #fff;
+  background: black;
   margin: 0 auto;
   box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
