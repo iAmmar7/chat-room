@@ -1,37 +1,41 @@
+var color = ['black', 'blue', 'purple', 'orange', 'red'];
 
 signup__form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   var name = document.getElementById("name").value;
   var email = document.getElementById("email").value;
-  var pass =  document.getElementById("pass").value;
-  
+  var pass = document.getElementById("pass").value;
+
+  var random_color = Math.floor((Math.random() * 6));
+
   firebase.auth()
-  .createUserWithEmailAndPassword(email, pass)
-  .then(res => {
-    alert(res);
+    .createUserWithEmailAndPassword(email, pass)
+    .then(res => {
+      alert(res);
 
-    writeUserData(res.user.uid, name, res.user.email);
+      writeUserData(res.user.uid, name, res.user.email, color[random_color]);
 
-    window.location.href = "../../sign-in.html";
-  })
-  .catch(function(error) {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-  
-    alert(errorCode, errorMessage)
-  });
+      window.location.href = "../../sign-in.html";
+    })
+    .catch(function (error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+      alert(errorCode, errorMessage)
+    });
 });
 
 
-function writeUserData(userId, name, email) {
+function writeUserData(userId, name, email, color) {
   firebase.database()
     .ref('Users/' + userId)
     .set({
-    username: name,
-    email: email,
-    online: false
-  });
+      username: name,
+      email: email,
+      color: color,
+      online: false
+    });
 }
 
 // import { elements } from "./base";
