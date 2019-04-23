@@ -66,53 +66,68 @@
         <i class="fas fa-trash"></i>
       </div>
 
-      <div class="messages-container">
-        <div class="each-message">
+      <div class="messages-container" id="scroll">
+        <li class="each-message">
           <div class="avatar" style="background: black">
             <i class="fas fa-user-alt"></i>
           </div>
           <div class="message">
-            <p class="username">Jon Snow</p>
+            <div class="name-time">
+              <p class="username">Jon Snow</p>
+              <span>6:22 PM</span>
+            </div>
             <p class="text">The White Walkers don't care if a man's free folk or crow. We're all the same to them, meat for their army.</p>
           </div>
-        </div>
-        <div class="each-message">
+        </li>
+        <li class="each-message">
           <div class="avatar" style="background: yellow">
             <i class="fas fa-user-alt"></i>
           </div>
           <div class="message">
-            <p class="username">Daenerys Targaryen</p>
+            <div class="name-time">
+              <p class="username">Daenerys Targaryen</p>
+              <span>6:22 PM</span>
+            </div>
             <p class="text">When my dragons are grown, we will take back what was stolen from me and destroy those who wronged me! We will lay waste to armies and burn cities to the ground!</p>
           </div> 
-        </div>
-        <div class="each-message">
+        </li>
+        <li class="each-message">
           <div class="avatar" style="background: blue">
             <i class="fas fa-user-alt"></i>
           </div>
           <div class="message">
-            <p class="username">Arya Stark</p>
+            <div class="name-time">
+              <p class="username">Arya Stark</p>
+              <span>6:22 PM</span>
+            </div>
             <p class="text">Leave one wolf alive and the sheep are never safe. When people ask you what happened here, tell them the North remembers. Tell them winter came for House Frey.</p>
           </div> 
-        </div>
-        <div class="each-message">
+        </li>
+        <li class="each-message">
           <div class="avatar" style="background: black">
             <i class="fas fa-user-alt"></i>
           </div>
           <div class="message">
-            <p class="username">Jon Snow</p>
-            <p class="text">The more you give a king, the more he wants. We are walking on a bridge of ice with an abyss on either side. Pleasing one king is difficult enough, pleasing two is hardly possible.</p>
+            <div class="name-time">
+              <p class="username">Jon Snow</p>
+              <span>6:22 PM</span>
+            </div>
+            <p class="text">The more you give a king, the more he wants. We are walking on a bridge of ice with an abyss on either side. Pleasing one king is diffi<divt enough, pleasing two is hardly possible.</p>
           </div> 
-        </div>
+        </li>
       </div>
 
       <div class="bottom-right">
         <button><i class="fas fa-paperclip"></i></button>
-        <input type="text" id="msg" placeholder="Type a message" />
+        <input type="text" id="msg" placeholder="Type a message" autofocus/>
         <button><i class="fas fa-paper-plane"></i></button>
       </div>
 
     </div>
   </div>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+
 
   <!-- Firebase -->
   <script defer src="https://www.gstatic.com/firebasejs/5.10.0/firebase-app.js"></script>

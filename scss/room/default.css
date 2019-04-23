@@ -14,6 +14,7 @@
 * {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 html {
@@ -230,6 +231,7 @@ body {
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 1.5vw;
+  position: relative;
 }
 
 .container .right-container .messages-container .each-message .avatar {
@@ -257,11 +259,33 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   margin: 0 1vw;
+  width: 100%;
 }
 
-.container .right-container .messages-container .each-message .message .username {
+.container .right-container .messages-container .each-message .message .name-time {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .right-container .messages-container .each-message .message .name-time .username {
   font-weight: bold;
   margin-bottom: .3vw;
+}
+
+.container .right-container .messages-container .each-message .message .name-time span {
+  margin-left: 2%;
+  font-size: 80%;
+  color: grey;
+}
+
+.container .right-container .messages-container .each-message .time {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 .container .right-container .bottom-right {
