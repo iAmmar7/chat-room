@@ -22,6 +22,7 @@ window.addEventListener("DOMContentLoaded", () => {
       })
     } else {
       console.log("User not logged in");
+      window.location.href = "../../sign-in.html";
     }
   })
 })
