@@ -1,3 +1,14 @@
+window.addEventListener("DOMContentLoaded", () => {
+  firebase.auth().onAuthStateChanged(user => {
+    if(user) {
+      // window.location.href = "../../../room.html"
+      console.log("User not logged in");
+    } else {
+      console.log("Sign-up Page");
+    }
+  })
+});
+
 var color = ['black', 'blue', 'purple', 'orange', 'red'];
 
 signup__form.addEventListener("submit", (e) => {
@@ -28,7 +39,8 @@ signup__form.addEventListener("submit", (e) => {
 
 
 function writeUserData(userId, name, email, color) {
-  firebase.database()
+  firebase
+    .database()
     .ref('Users/' + userId)
     .set({
       username: name,
@@ -36,6 +48,11 @@ function writeUserData(userId, name, email, color) {
       color: color,
       online: false
     });
+
+  firebase
+    .database()
+    .ref('Rooms/DefaultRoom/')
+    .update({ RoomName: "Default Room"});
 }
 
 // import { elements } from "./base";

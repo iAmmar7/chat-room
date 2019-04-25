@@ -1,15 +1,25 @@
+window.location.hash = 'DefaultRoom';
+var hashValue = window.location.hash;
+hashValue = hashValue.substring(1);
+
+console.log(window.location.hash);
+
 window.addEventListener("DOMContentLoaded", () => {
-  
+
   firebase.auth().onAuthStateChanged(user => {
     if(user) {
       console.log(1);
 
-      if(window.location.hash === "") {
-        var users = db.ref('DefaultRoom/Members');
-        users.on('value', gotMembers, errData);
-  
-        var messages = db.ref('DefaultRoom/Messages');
-        messages.on('value', gotMessages, errData);
+      if(window.location.hash === "#DefaultRoom") {
+        console.log("Current Hash value: ", window.location.hash);
+        // var users = db.ref('DefaultRoom/Members');
+        // users.on('value', gotData, errData);
+
+        var roomsData = db.ref('Rooms/DefaultRoom/');
+        roomsData.on('value', gotData, errData);
+
+        // var rooms = db.ref('UsersRoom/');
+        // rooms.on('value', gotRooms, errData);
 
         generateURL.style.display = 'none';
       }
@@ -26,46 +36,49 @@ window.addEventListener("DOMContentLoaded", () => {
     } else {
       window.location.href = "../../sign-in.html"
       console.log("User not logged in");
-      window.location.href = "../../sign-in.html";
     }
   })
 })
 
-function gotMembers(data) {
-  var obj = data.val();
-  var keys = Object.keys(obj);
+function gotData(data) {
+  var roomName = data.val().RoomName;
   var countActive = 0;
-  console.log(keys);
+  console.log(roomName);
+
+  var members = data.val().Members;
+  var memKeys = Object.keys(members);
+
   users__container.innerHTML = "";
   rooms__container.innerHTML = "";
-  for (var i=0; i < keys.length; i++) {
-    var k = keys[i];
-    var username = obj[k].username;
-    var color = obj[k].color;
+  messages__container.innerHTML = "";
+
+  for (var i=0; i < memKeys.length; i++) {
+    var k = memKeys[i];
+    var username = members[k].username;
+    var color = members[k].color;
     console.log(username, color);
 
-    if(obj[k].isActive) {
+    if(members[k].isActive) {
       displayMembers(username, color);
       countActive++;
     }
   }
-  displayRooms(countActive);
-}
+  displayRooms(roomName, countActive);
 
-function gotMessages(data) {
-  var obj = data.val();
-  var keys = Object.keys(obj);
-  console.log(keys);
-  messages__container.innerHTML = "";
-  for (var i=0; i < keys.length; i++) {
-    var k = keys[i];
-    var msg = obj[k].message;
-    var name = obj[k].username;
-    var clr = obj[k].color;
-    var time = obj[k].date;
-    console.log(msg, name, time, clr);
+  if(data.val().Messages) {
+    var messages = data.val().Messages;
+    var msgKeys = Object.keys(messages);
 
-    displayMessages(name, msg, time, clr);
+    for (var i=0; i < msgKeys.length; i++) {
+      var k = msgKeys[i];
+      var msg = messages[k].message;
+      var name = messages[k].username;
+      var clr = messages[k].color;
+      var time = messages[k].date;
+      console.log(msg, name, time, clr);
+
+      displayMessages(name, msg, time, clr);
+    }
   }
 }
 
@@ -85,16 +98,6 @@ function displayMembers(user, clr) {
                     </div>
                   </li>`;
   users__container.appendChild(li);
-}
-
-function displayRooms(count) {
-  var li = document.createElement('li');
-  li.innerHTML = `<li class="each-room">
-                    <p>Default Room</p>
-                    <span>Active Members: ${count}</span>
-                  </li>`;
-                  console.log(count);
-  rooms__container.appendChild(li);
 }
 
 function displayMessages(username, message, date, color) {
@@ -117,6 +120,15 @@ function displayMessages(username, message, date, color) {
   objDiv.scrollTop = objDiv.scrollHeight;
 }
 
+function displayRooms(name, count) {
+  var li = document.createElement('li');
+  li.innerHTML = `<li class="each-room">
+                    <p>${name}</p>
+                    <span>Active Members: ${count}</span>
+                  </li>`;
+                  console.log(count);
+  rooms__container.appendChild(li);
+}
 
 //            SEND MESSAGES
 // ====================================
@@ -136,7 +148,7 @@ function sendMessage() {
       console.log(msg);
 
       var currentUser = firebase.auth().currentUser;
-      return firebase.database().ref('/Users/' + currentUser.uid).once('value').then((snapshot) => {
+      return firebase.database().ref(`/Rooms/${hashValue}/Members/` + currentUser.uid).once('value').then((snapshot) => {
         var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
         var color = (snapshot.val() && snapshot.val().color) || 'Anonymous';
         console.log(username, color);
@@ -156,7 +168,7 @@ function sendMessage() {
 
 function writeMessageData(userId, name, text, clr, date) {
   firebase.database()
-    .ref('DefaultRoom/Messages')
+    .ref('Rooms/DefaultRoom/Messages/')
     .push({
       userId: userId,
       username: name,
@@ -169,4 +181,49 @@ function writeMessageData(userId, name, text, clr, date) {
 
 //                    CREATE ROOM
 // =================================================
+// createRoom.addEventListener('click', () => {
+//   firebase.auth().onAuthStateChanged(user => {
+//     if(user) {
+//       console.log("hello form create room");
+//       var currentUser = firebase.auth().currentUser;
+//       console.log(currentUser.uid);
+//       return firebase.database().ref('/Users/' + currentUser.uid).once('value').then((snapshot) => {
+//         var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+//         var color = (snapshot.val() && snapshot.val().color) || 'Anonymous';
 
+//         var createDate = new Date().toDateString();
+//         var roomName = prompt("Enter a name of your Room: ").trim();
+//         if(roomName) {
+//           addRoom(currentUser.uid, username, roomName, createDate, color);
+//         } else {
+//           alert("Please enter a valid name");
+//         }
+//       });
+//     }
+//   });
+// })
+
+// function addRoom(userId, name, room, date, clr) {
+//   var roomId = firebase
+//     .database()
+//     .ref('UsersRoom')
+//     .push({
+//       AdminId: userId,
+//       AdminName: name,
+//       RoomName: room,
+//       CreationDate: date
+//     }).key;
+
+//     pushToUserCreatedRoomMembers(roomId, userId, name, clr);
+// }
+
+// function pushToUserCreatedRoomMembers(roomId, userId, name, color) {
+//   firebase
+//     .database()
+//     .ref(`UsersRoom/${roomId}/Members/` + userId)
+//     .set({
+//       username: name,
+//       color: color,
+//       isActive: false
+//     })
+// }

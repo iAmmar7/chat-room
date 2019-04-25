@@ -3,6 +3,9 @@ signout.addEventListener('click', (e) => {
 
   var userId = firebase.auth().currentUser.uid;
   userOffline(userId);
+  if(window.location.hash === "") {
+    
+  }
 
   firebase
     .auth()
@@ -20,4 +23,12 @@ function userOffline(userId) {
     .update({
       online: false
     });
+
+  firebase
+    .database()
+    .ref(`Rooms/DefaultRoom/Members/${userId}/`)
+    .update({
+      online: false,
+      isActive: false
+    })
 }
