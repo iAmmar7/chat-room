@@ -1,4 +1,4 @@
-.container .left-container .header-left, .container .left-container .bottom-left, .container .right-container .header-right, .container .right-container .bottom-right {
+.container .left-container .header-left, .container .left-container .bottom-left, .container .middle-container .header-middle, .container .middle-container .bottom-middle, .container .right-container .bottom-right {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -144,25 +144,6 @@ body {
   justify-self: flex-end;
 }
 
-.container .left-container .users-container::-webkit-scrollbar {
-  background-color: dark;
-  width: 0.6em;
-}
-
-.container .left-container .users-container::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 0.1em #261771;
-          box-shadow: inset 0 0 0.1em #261771;
-  border-radius: 10px;
-}
-
-.container .left-container .users-container::-webkit-scrollbar-thumb {
-  background-color: #1E1162;
-}
-
-.container .left-container .users-container::-webkit-scrollbar-thumb:hover {
-  background-color: black;
-}
-
 .container .left-container .bottom-left {
   border-top: 0.5px solid #474747;
   -webkit-box-shadow: 0px 0px 6px;
@@ -186,7 +167,7 @@ body {
   margin: 0;
 }
 
-.container .right-container {
+.container .middle-container {
   -webkit-box-flex: 3;
       -ms-flex: 3;
           flex: 3;
@@ -200,18 +181,18 @@ body {
   position: relative;
 }
 
-.container .right-container .header-right {
+.container .middle-container .header-middle {
   border-bottom: 0.5px solid #474747;
-  -webkit-box-shadow: 6px 0px 6px;
-          box-shadow: 6px 0px 6px;
+  -webkit-box-shadow: 0px 0px 6px;
+          box-shadow: 0px 0px 6px;
 }
 
-.container .right-container .header-right h2 {
+.container .middle-container .header-middle h2 {
   color: #1E201E;
   margin-right: auto;
 }
 
-.container .right-container .messages-container {
+.container .middle-container .messages-container {
   -webkit-box-flex: 8;
       -ms-flex: 8;
           flex: 8;
@@ -226,7 +207,7 @@ body {
   overflow-y: scroll;
 }
 
-.container .right-container .messages-container .each-message {
+.container .middle-container .messages-container .each-message {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -234,7 +215,7 @@ body {
   position: relative;
 }
 
-.container .right-container .messages-container .each-message .avatar {
+.container .middle-container .messages-container .each-message .avatar {
   -ms-flex-item-align: start;
       align-self: flex-start;
   border-radius: 50%;
@@ -244,13 +225,13 @@ body {
   text-align: center;
 }
 
-.container .right-container .messages-container .each-message .avatar i {
+.container .middle-container .messages-container .each-message .avatar i {
   color: white;
   padding: 1vw;
   margin: 0;
 }
 
-.container .right-container .messages-container .each-message .message {
+.container .middle-container .messages-container .each-message .message {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -262,7 +243,7 @@ body {
   width: 100%;
 }
 
-.container .right-container .messages-container .each-message .message .name-time {
+.container .middle-container .messages-container .each-message .message .name-time {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -271,35 +252,35 @@ body {
           align-items: center;
 }
 
-.container .right-container .messages-container .each-message .message .name-time .username {
+.container .middle-container .messages-container .each-message .message .name-time .username {
   font-weight: bold;
   margin-bottom: .3vw;
 }
 
-.container .right-container .messages-container .each-message .message .name-time span {
+.container .middle-container .messages-container .each-message .message .name-time span {
   margin-left: 2%;
   font-size: 80%;
   color: grey;
 }
 
-.container .right-container .messages-container .each-message .time {
+.container .middle-container .messages-container .each-message .time {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
 }
 
-.container .right-container .bottom-right {
+.container .middle-container .bottom-middle {
   border-top: 0.5px solid #474747;
-  -webkit-box-shadow: 6px 0px 6px;
-          box-shadow: 6px 0px 6px;
+  -webkit-box-shadow: 0px 0px 6px;
+          box-shadow: 0px 0px 6px;
   background: #EFEEF7;
 }
 
-.container .right-container .bottom-right i {
+.container .middle-container .bottom-middle i {
   font-size: 1.7em;
 }
 
-.container .right-container .bottom-right input {
+.container .middle-container .bottom-middle input {
   width: 90%;
   font-size: 1em;
   padding: .5em;
@@ -307,9 +288,113 @@ body {
   margin-right: .8em;
 }
 
-.container .right-container .bottom-right button {
+.container .middle-container .bottom-middle button {
   border: none;
   background: none;
+}
+
+.container .right-container {
+  background: #261771;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.container .right-container .header-right {
+  border-bottom: 0.5px solid #474747;
+  -webkit-box-shadow: 0px 0px 6px;
+          box-shadow: 0px 0px 6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container .right-container .header-right h3 {
+  color: white;
+}
+
+.container .right-container .rooms-container {
+  -webkit-box-flex: 8;
+      -ms-flex: 8;
+          flex: 8;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow-y: hidden;
+}
+
+.container .right-container .rooms-container:hover {
+  overflow-y: overlay;
+}
+
+.container .right-container .rooms-container .each-room {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-bottom: 2px solid black;
+  padding: 1vw;
+  cursor: pointer;
+  -webkit-transition: background 0.2s ease-in;
+  transition: background 0.2s ease-in;
+}
+
+.container .right-container .rooms-container .each-room p {
+  color: white;
+}
+
+.container .right-container .rooms-container .each-room span {
+  color: grey;
+  font-size: 90%;
+}
+
+.container .right-container .rooms-container .each-room:hover {
+  background: #1E1162;
+}
+
+.container .right-container .bottom-right {
+  border-top: 0.5px solid #474747;
+  -webkit-box-shadow: 0px 0px 6px;
+          box-shadow: 0px 0px 6px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.container .right-container .bottom-right .generateURL {
+  background: #319632;
+  padding: 0.6em;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+}
+
+.container .right-container .bottom-right .generateURL:hover {
+  background: #2a812b;
 }
 
 i {
@@ -321,5 +406,24 @@ i {
 
 i:hover {
   color: #261771;
+}
+
+.users-container::-webkit-scrollbar, .rooms-container::-webkit-scrollbar {
+  background-color: dark;
+  width: 0.6em;
+}
+
+.users-container::-webkit-scrollbar-track, .rooms-container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 0.1em #261771;
+          box-shadow: inset 0 0 0.1em #261771;
+  border-radius: 10px;
+}
+
+.users-container::-webkit-scrollbar-thumb, .rooms-container::-webkit-scrollbar-thumb {
+  background-color: #1E1162;
+}
+
+.users-container::-webkit-scrollbar-thumb:hover, .rooms-container::-webkit-scrollbar-thumb:hover {
+  background-color: black;
 }
 /*# sourceMappingURL=default.css.map */

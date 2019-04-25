@@ -1,24 +1,18 @@
-// var displayname = document.querySelector(".username");
-// window.scrollTo(0,document.body.scrollHeight);
-// window.scrollTo(0,document.querySelector(".each-message").scrollHeight);
-
-// window.onload=function () {
-//   var objDiv = document.getElementById("scroll");
-//   objDiv.scrollTop = objDiv.scrollHeight;
-//   console.log(objDiv.scrollTop);
-// }
-
 window.addEventListener("DOMContentLoaded", () => {
   
   firebase.auth().onAuthStateChanged(user => {
     if(user) {
       console.log(1);
 
-      var users = db.ref('Users');
-      users.on('value', gotUsers, errData);
+      if(window.location.hash === "") {
+        var users = db.ref('DefaultRoom/Members');
+        users.on('value', gotMembers, errData);
+  
+        var messages = db.ref('DefaultRoom/Messages');
+        messages.on('value', gotMessages, errData);
 
-      var messages = db.ref('DefaultRoom/Messages');
-      messages.on('value', gotMessages, errData)
+        generateURL.style.display = 'none';
+      }
 
       // var currentUser = firebase.auth().currentUser;
       // return firebase.database().ref('/Users/' + currentUser.uid).once('value').then((snapshot) => {
@@ -37,38 +31,25 @@ window.addEventListener("DOMContentLoaded", () => {
   })
 })
 
-function gotUsers(data) {
+function gotMembers(data) {
   var obj = data.val();
   var keys = Object.keys(obj);
+  var countActive = 0;
   console.log(keys);
   users__container.innerHTML = "";
+  rooms__container.innerHTML = "";
   for (var i=0; i < keys.length; i++) {
     var k = keys[i];
     var username = obj[k].username;
     var color = obj[k].color;
     console.log(username, color);
 
-    if(obj[k].online) {
-      displayUsers(username, color);
+    if(obj[k].isActive) {
+      displayMembers(username, color);
+      countActive++;
     }
   }
-}
-function errData(err) {
-  console.log("Error", err);
-}
-
-function displayUsers(user, clr) {
-  var li = document.createElement('li');
-  li.innerHTML = `<li class="each-user">
-                    <div class="avatar" style="background: ${clr}">
-                      <i class="fas fa-user-alt"></i>
-                    </div>
-                    <div class="name">
-                      <p class="username">${user}</p>
-                      <i class="fas fa-circle"></i>
-                    </div>
-                  </li>`;
-  users__container.appendChild(li);
+  displayRooms(countActive);
 }
 
 function gotMessages(data) {
@@ -86,6 +67,34 @@ function gotMessages(data) {
 
     displayMessages(name, msg, time, clr);
   }
+}
+
+function errData(err) {
+  console.log("Error", err);
+}
+
+function displayMembers(user, clr) {
+  var li = document.createElement('li');
+  li.innerHTML = `<li class="each-user">
+                    <div class="avatar" style="background: ${clr}">
+                      <i class="fas fa-user-alt"></i>
+                    </div>
+                    <div class="name">
+                      <p class="username">${user}</p>
+                      <i class="fas fa-circle"></i>
+                    </div>
+                  </li>`;
+  users__container.appendChild(li);
+}
+
+function displayRooms(count) {
+  var li = document.createElement('li');
+  li.innerHTML = `<li class="each-room">
+                    <p>Default Room</p>
+                    <span>Active Members: ${count}</span>
+                  </li>`;
+                  console.log(count);
+  rooms__container.appendChild(li);
 }
 
 function displayMessages(username, message, date, color) {
@@ -108,6 +117,17 @@ function displayMessages(username, message, date, color) {
   objDiv.scrollTop = objDiv.scrollHeight;
 }
 
+
+//            SEND MESSAGES
+// ====================================
+document.addEventListener('keypress', function(event) {
+  if(event.keyCode === 13 || event.which === 13) {
+    sendMessage();
+  }
+})
+send__message.addEventListener('click', () => {
+  sendMessage();
+})
 
 function sendMessage() {
   firebase.auth().onAuthStateChanged(user => {
@@ -134,15 +154,6 @@ function sendMessage() {
   })
 }
 
-document.addEventListener('keypress', function(event) {
-  if(event.keyCode === 13 || event.which === 13) {
-    sendMessage();
-  }
-})
-send__message.addEventListener('click', () => {
-  sendMessage();
-})
-
 function writeMessageData(userId, name, text, clr, date) {
   firebase.database()
     .ref('DefaultRoom/Messages')
@@ -156,4 +167,6 @@ function writeMessageData(userId, name, text, clr, date) {
 }
 
 
+//                    CREATE ROOM
+// =================================================
 

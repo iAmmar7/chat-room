@@ -107,20 +107,6 @@ body {
         }
       }
     }
-    .users-container::-webkit-scrollbar { 
-      background-color: dark;
-      width: 0.6em;
-    }
-    .users-container::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 0.1em $left-container; 
-      border-radius: 10px;
-    }
-    .users-container::-webkit-scrollbar-thumb {
-      background-color: $user-hover;
-    }
-    .users-container::-webkit-scrollbar-thumb:hover {
-      background-color: black;
-    }
   
     .bottom-left {
       border-top: 0.5px solid $border-color;
@@ -146,17 +132,17 @@ body {
     }
   }
 
-  //        right-Container
+  //        middle-Container
   // ===============================
-  .right-container {
+  .middle-container {
     flex: 3;
     display: flex;
     flex-direction: column;
     position: relative;
   
-    .header-right {
+    .header-middle {
       border-bottom: 0.5px solid $border-color;
-      box-shadow: 6px 0px 6px;
+      box-shadow: 0px 0px 6px;
       @extend %header-bottom;
 
       h2 {
@@ -222,9 +208,9 @@ body {
       }
     }
   
-    .bottom-right {
+    .bottom-middle {
       border-top: 0.5px solid $border-color;
-      box-shadow: 6px 0px 6px;
+      box-shadow: 0px 0px 6px;
       background: #EFEEF7;
       @extend %header-bottom;
 
@@ -244,6 +230,82 @@ body {
       }
     }
   }
+
+  //        Right-Container
+  // ===============================
+  .right-container {
+    background: $left-container;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  
+    .header-right {
+      border-bottom: 0.5px solid $border-color;
+      box-shadow: 0px 0px 6px;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+
+      h3 {
+        color: white;
+      }
+    }
+  
+    .rooms-container {
+      flex: 8;
+      display: flex;
+      flex-direction: column;
+      // max-width: 20vw;
+      // overflow-y: scroll;
+      overflow-y: hidden;
+
+      &:hover {
+        overflow-y: overlay;
+      }
+
+      .each-room {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 2px solid black;
+        padding: 1vw;
+        cursor: pointer;
+        transition: background 0.2s ease-in;
+
+        p {
+          color: white;
+        }
+        span {
+          color: grey;
+          font-size: 90%;
+        }
+
+        &:hover {
+          background: $user-hover;
+        }
+      }
+    }
+
+    .bottom-right {
+      border-top: 0.5px solid $border-color;
+      box-shadow: 0px 0px 6px;
+      @extend %header-bottom;
+      justify-content: flex-end;
+
+      .generateURL {
+        background: $button-color;
+        padding: 0.6em;
+        border: none;
+        outline: none;
+        color: white;
+        cursor: pointer;
+
+        &:hover {
+          background: $button-color-hover;
+        }
+      }
+    }
+  }
 }
 
 i {
@@ -255,4 +317,19 @@ i {
   &:hover {
     color: $left-container;
   }
+}
+
+.users-container::-webkit-scrollbar, .rooms-container::-webkit-scrollbar { 
+  background-color: dark;
+  width: 0.6em;
+}
+.users-container::-webkit-scrollbar-track, .rooms-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0.1em $left-container; 
+  border-radius: 10px;
+}
+.users-container::-webkit-scrollbar-thumb, .rooms-container::-webkit-scrollbar-thumb {
+  background-color: $user-hover;
+}
+.users-container::-webkit-scrollbar-thumb:hover, .rooms-container::-webkit-scrollbar-thumb:hover {
+  background-color: black;
 }
