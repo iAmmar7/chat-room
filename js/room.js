@@ -1,6 +1,8 @@
-window.location.hash = 'DefaultRoom';
+if(window.location.hash === "") { 
+  window.location.hash = "DefaultRoom";
+}
 var hashValue = window.location.hash;
-hashValue = hashValue.substring(1);
+hashValue = hashValue.substring(1); 
 
 window.addEventListener("DOMContentLoaded", () => {
   render(hashValue);
@@ -9,9 +11,10 @@ window.addEventListener("DOMContentLoaded", () => {
 var membersList = [];
 
 function render(hashValue) {
-  window.location.hash = hashValue;
+
   firebase.auth().onAuthStateChanged(user => {
     if(user) {
+      // changeRoom(hashValue);
 
       var currentUser = firebase.auth().currentUser;
       return firebase.database().ref('/Users/' + currentUser.uid).once('value').then((snapshot) => {
@@ -21,6 +24,7 @@ function render(hashValue) {
         pushUserRoomMembers(hashValue, currentUser.uid, username, color);
 
         if(hashValue) {
+          console.log(hashValue);
           var roomsData = db.ref(`Rooms/${hashValue}/`);
           roomsData.on('value', gotData, errData);
 
@@ -34,18 +38,20 @@ function render(hashValue) {
             generateURL.style.display = 'initial';
           }
 
-        } else {
-            window.location.href = "../../sign-in.html"
-            console.log("User not logged in");
-          }
+        }
       })
+    }  else {
+      window.location.href = "../../sign-in.html"
+      console.log("User not logged in");
     }
   })
 }
 
 function gotData(data) {
+  var roomName = data.val().RoomName;
   var members = data.val().Members;
 
+  room__name.firstElementChild.innerHTML = "";
   users__container.innerHTML = "";
   messages__container.innerHTML = "";
 
@@ -66,8 +72,10 @@ function gotData(data) {
       var color = members[k].color;
 
       if(members[k].isActive) {
-        displayMembers(username, color);
+        displayMembers(username, color, k);
         membersList.push(i);
+    console.log(membersList);
+
       }
     }
   }
@@ -83,9 +91,13 @@ function gotData(data) {
       var clr = messages[k].color;
       var time = messages[k].date;
 
-      displayMessages(name, msg, time, clr);
+      displayMessages(name, msg, time, clr, roomName);
     }
   }
+
+  var h2 = document.createElement('h2');
+  h2.innerHTML = `${roomName}`;
+  room__name.insertBefore(h2, room__name.firstChild);
 }
 
 function gotAvailabeRooms(data) {
@@ -125,7 +137,8 @@ function errData(err) {
 
 //        Display Members
 // ================================
-function displayMembers(user, clr) {
+function displayMembers(user, clr, id) {
+  var currentUser = firebase.auth().currentUser.uid;
   var li = document.createElement('li');
   li.innerHTML = `<li class="each-user">
                     <div class="avatar" style="background: ${clr}">
@@ -136,6 +149,10 @@ function displayMembers(user, clr) {
                       <i class="fas fa-circle"></i>
                     </div>
                   </li>`;
+
+  if(id === currentUser) {
+    li.style.backgroundColor = "black";
+  }
   users__container.appendChild(li);
 }
 
@@ -180,6 +197,14 @@ function displayRooms(name, count, id) {
   rooms__container.appendChild(li);
 }
 
+window.addEventListener('onhashchange', () => {
+  firebase
+    .database()
+    .ref(`Rooms/${window.location.hash.substring(1)}/Members/${currentUser}/`)
+    .update({
+      isActive: false
+    })
+})
 function changeRoom(roomId) {
   var currentUser = firebase.auth().currentUser.uid;
   console.log("here");
@@ -190,6 +215,8 @@ function changeRoom(roomId) {
       isActive: false
     })
   render(roomId);
+  window.location.hash = roomId;
+  location.reload();
 }
 
 //            SEND MESSAGES
@@ -260,7 +287,7 @@ createRoom.addEventListener('click', () => {
   });
 })
 
-function addRoom(userId, name, room, date, clr) {
+function addRoom(userId, name, room, date) {
   var roomId = firebase
     .database()
     .ref('Rooms')
@@ -272,7 +299,6 @@ function addRoom(userId, name, room, date, clr) {
     }).key;
 
     changeRoom(roomId);
-    // pushUserRoomMembers(roomId, userId, name, clr);
 }
 
 function pushUserRoomMembers(roomId, userId, name, color) {

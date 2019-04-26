@@ -31,4 +31,11 @@ function userOffline(userId) {
       online: false,
       isActive: false
     })
+
+  firebase
+    .database()
+    .ref(`Rooms/${window.location.hash.substring(1)}/Members/${userId}/`)
+    .update({
+      isActive: false
+    })
 }
