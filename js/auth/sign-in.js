@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
   firebase.auth().onAuthStateChanged(user => {
     if(user) {
-      // window.location.href = "../../../room.html"
+      window.location.href = "../../../room.html"
       console.log("User not logged in");
     } else {
       console.log("Login Page");
@@ -44,13 +44,13 @@ function userOnline(userId) {
       online: true
     });
 
-  firebase
-    .database()
-    .ref('Rooms/DefaultRoom/Members/' + userId)
-    .update({
-      isActive: true,
-      online: true
-    });
+  // firebase
+  //   .database()
+  //   .ref('Rooms/DefaultRoom/Members/' + userId)
+  //   .update({
+  //     isActive: true,
+  //     online: true
+  //   });
 }
 
 function pushToDefaultRoom(id) {
@@ -65,15 +65,15 @@ function gotUser(data, id) {
   var firebaseObj = data.val();
   console.log(firebaseObj, firebaseObj.username);
   
-  firebase
-    .database()
-    .ref(`Rooms/DefaultRoom/Members/` + id)
-    .set({
-      username: firebaseObj.username,
-      color: firebaseObj.color,
-      isActive: true,
-      online: true
-    })
+  // firebase
+  //   .database()
+  //   .ref(`Rooms/DefaultRoom/Members/` + id)
+  //   .set({
+  //     username: firebaseObj.username,
+  //     color: firebaseObj.color,
+  //     isActive: true,
+  //     online: true
+  //   })
 }
 
 function gotErr(error) {
