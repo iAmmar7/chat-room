@@ -17,6 +17,7 @@ signout.addEventListener('click', (e) => {
 })
 
 function userOffline(userId) {
+  // localStorage.removeItem('activeMembers');
   firebase
     .database()
     .ref('Users/' + userId)

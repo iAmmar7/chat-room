@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <link href="https://fonts.googleapis.com/css?family=Overlock:400,700,900" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Overlock:400,700,900"
+    rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+    crossorigin="anonymous">
   <link rel="stylesheet" href="scss/room/default.css">
 </head>
+
 <body>
   <!-- <h1>This is <span class="username"></span> room</h1>
   <button class="sign-out">Sign Out</button> -->
@@ -17,11 +23,11 @@
 
     <div class="left-container">
       <div class="header-left">
-        <button class="sign-out">Sign Out</button> 
+        <button class="sign-out">Sign Out</button>
       </div>
 
       <ul class="users-container">
-        <li class="each-user">
+        <!-- <li class="each-user">
           <div class="avatar" style="background: black">
             <i class="fas fa-user-alt"></i>
           </div>
@@ -47,7 +53,7 @@
             <p class="username">Arya Stark</p>
             <i class="fas fa-circle"></i>
           </div>
-        </li>
+        </li> -->
       </ul>
 
       <div class="bottom-left">
@@ -67,7 +73,7 @@
       </div>
 
       <div class="messages-container" id="scroll">
-        <li class="each-message">
+        <!-- <li class="each-message">
           <div class="avatar" style="background: black">
             <i class="fas fa-user-alt"></i>
           </div>
@@ -76,7 +82,9 @@
               <p class="username">Jon Snow</p>
               <span>6:22 PM</span>
             </div>
-            <p class="text">The White Walkers don't care if a man's free folk or crow. We're all the same to them, meat for their army.</p>
+            <p class="text">The White Walkers don't care if a man's free
+              folk or crow. We're all the same to them, meat for their
+              army.</p>
           </div>
         </li>
         <li class="each-message">
@@ -88,8 +96,10 @@
               <p class="username">Daenerys Targaryen</p>
               <span>6:22 PM</span>
             </div>
-            <p class="text">When my dragons are grown, we will take back what was stolen from me and destroy those who wronged me! We will lay waste to armies and burn cities to the ground!</p>
-          </div> 
+            <p class="text">When my dragons are grown, we will take back
+              what was stolen from me and destroy those who wronged me! We
+              will lay waste to armies and burn cities to the ground!</p>
+          </div>
         </li>
         <li class="each-message">
           <div class="avatar" style="background: blue">
@@ -100,8 +110,10 @@
               <p class="username">Arya Stark</p>
               <span>6:22 PM</span>
             </div>
-            <p class="text">Leave one wolf alive and the sheep are never safe. When people ask you what happened here, tell them the North remembers. Tell them winter came for House Frey.</p>
-          </div> 
+            <p class="text">Leave one wolf alive and the sheep are never
+              safe. When people ask you what happened here, tell them the
+              North remembers. Tell them winter came for House Frey.</p>
+          </div>
         </li>
         <li class="each-message">
           <div class="avatar" style="background: black">
@@ -112,14 +124,17 @@
               <p class="username">Jon Snow</p>
               <span>6:22 PM</span>
             </div>
-            <p class="text">The more you give a king, the more he wants. We are walking on a bridge of ice with an abyss on either side. Pleasing one king is diffi<divt enough, pleasing two is hardly possible.</p>
+            <p class="text">The more you give a king, the more he wants. We
+              are walking on a bridge of ice with an abyss on either side.
+              Pleasing one king is difficult enough, pleasing two is
+              hardly possible.</p>
           </div> 
-        </li>
+        </li>-->
       </div>
-
       <div class="bottom-middle">
         <button><i class="fas fa-paperclip"></i></button>
-        <input type="text" id="msg" placeholder="Type a message" autofocus/>
+        <input type="text" id="msg" placeholder="Type a message"
+          class="send-message" autofocus />
         <button><i class="fas fa-paper-plane"></i></button>
       </div>
 
@@ -127,10 +142,13 @@
 
     <div class="right-container">
       <div class="header-right">
-        <h3>Availabe Rooms</h3>
+        <input type="text" id="room" placeholder="Enter invitation link here"
+          class="another-room">
+        <button><i class="fas fa-search-plus"></i></button>
+        <!-- <li class="search-box"><input type="text" name="search" placeholder="Titles, people, genres"></li> -->
       </div>
       <ul class="rooms-container">
-        <li class="each-room">
+        <!-- <li class="each-room">
           <p>Default Room</p>
           <span>Active Members: 10</span>
         </li>
@@ -141,10 +159,10 @@
         <li class="each-room">
           <p>First Room</p>
           <span>Active Members: 25</span>
-        </li>
+        </li> -->
       </ul>
       <div class="bottom-right">
-        <button class="generateURL">Invite Others</button> 
+        <button class="generateURL">Invite Others</button>
       </div>
     </div>
   </div>
@@ -153,14 +171,18 @@
 
 
   <!-- Firebase -->
-  <script defer src="https://www.gstatic.com/firebasejs/5.10.0/firebase-app.js"></script>
+  <script defer
+    src="https://www.gstatic.com/firebasejs/5.10.0/firebase-app.js"></script>
 
-  <script defer src="https://www.gstatic.com/firebasejs/5.10.0/firebase-auth.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/5.10.0/firebase-database.js"></script>
+  <script defer
+    src="https://www.gstatic.com/firebasejs/5.10.0/firebase-auth.js"></script>
+  <script defer
+    src="https://www.gstatic.com/firebasejs/5.10.0/firebase-database.js"></script>
 
   <script defer src="./js/init-firebase.js"></script>
   <script src="./js/element.js"></script>
   <script src="./js/auth/sign-out.js"></script>
   <script src="./js/room.js"></script>
 </body>
+
 </html>

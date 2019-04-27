@@ -198,9 +198,9 @@ body {
               color: grey;
             }
           }
-          .text {
-            // line-height: 1.5vw;
-          }
+          // .text {
+          //   // line-height: 1.5vw;
+          // }
         }
         .time {
           align-self: center;
@@ -245,10 +245,34 @@ body {
       display: flex;
       flex: 1;
       align-items: center;
-      justify-content: center;
+      // justify-content: flex-end;
 
-      h3 {
+      input {
+        flex: 3;
+        outline: none;
+        padding: 0.5em;
+        margin-left: 2em;
+        margin-right: 0.2em;
+        background: $user-hover;
         color: white;
+        border: 1px solid $icon-color;
+
+        &:focus {
+          border: 1px solid $bottom-right;
+        }
+      }
+      button {
+        flex: 1;
+        border: none;
+        background: none;
+
+        i {
+          font-size: 1.5em;
+
+          &:hover {
+            color: white;
+          }
+        }
       }
     }
   
@@ -318,6 +342,9 @@ i {
     color: $left-container;
   }
 }
+button {
+  outline: none;  
+}
 
 .users-container::-webkit-scrollbar, .rooms-container::-webkit-scrollbar { 
   background-color: dark;
@@ -333,3 +360,35 @@ i {
 .users-container::-webkit-scrollbar-thumb:hover, .rooms-container::-webkit-scrollbar-thumb:hover {
   background-color: black;
 }
+
+// .search-box {
+//   input {
+//     width: 5vw;
+//     box-sizing: border-box;
+//     display: inline-block;
+//     color: white;
+//     border: none;
+//     z-index: 2147483647;
+//     font-size: 1rem;
+//     margin: 0;
+//     background-color: transparent;
+//     // background-image: url('../../images/container-bg.png');
+//     background-position: 8px 6px;
+//     background-size: 18px; 
+//     background-repeat: no-repeat;
+//     padding: 6px 15px;
+//     cursor: pointer;
+//     transition: width 0.2s ease-out;
+//     overflow: hidden;
+//   }
+//   input:focus {
+//     width: 18vw;
+//     z-index: 2147483647;
+//     transition: width 0.5s ease-in-out;
+//     background-color: black;
+//     border: 1px solid #fff;
+//     cursor: initial;
+//     padding: 6px 20px 6px 40px;
+//     outline: none;
+//   }
+// }

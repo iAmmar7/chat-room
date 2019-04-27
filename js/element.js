@@ -17,3 +17,6 @@ var generateURL = document.querySelector(".generateURL");
 var createRoom = document.querySelector(".create-room");
 
 var room__name = document.querySelector(".header-middle");
+
+var goToAnotherRoom = document.querySelector(".another-room");
+var searchRoomicon = document.querySelector(".fa-search-plus");
