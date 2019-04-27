@@ -88,7 +88,9 @@ function gotData(data) {
     }
 
     if(!userExist) {
-      changeRoom("DefaultRoom");
+      render("DefaultRoom");
+      window.location.hash = "DefaultRoom";
+      // location.reload();
     }
     // activeMembersList = [];
 
